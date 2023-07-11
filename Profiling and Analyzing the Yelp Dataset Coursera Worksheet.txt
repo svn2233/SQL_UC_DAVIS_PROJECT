@@ -39,9 +39,9 @@ Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.
 
 3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
 
-	Answer: NO, there is no columns with null values in user table 
+Answer: NO, there is no columns with null values in user table 
 	
-	SQL code used to arrive at answer:
+SQL code used to arrive at answer:
 
 SELECT *
 FROM user
@@ -92,14 +92,14 @@ WHERE id IS NULL OR
 		
 5. List the cities with the most reviews in descending order:
 
-	SQL code used to arrive at answer:
+SQL code used to arrive at answer:
 
 SELECT sum(review_count) AS total_reviews, city
 FROM business
 GROUP BY city
 ORDER BY total_reviews DESC;	
 	
-	Copy and Paste the Result Below:
+Copy and Paste the Result Below:
 
 +---------------+-----------------+
 | total_reviews | city            |
@@ -179,7 +179,7 @@ Copy and Paste the Resulting Table Below (2 columns – star rating and count):
 
 7. Find the top 3 users based on their total number of reviews:
 		
-	SQL code used to arrive at answer:
+SQL code used to arrive at answer:
 
 SELECT name, SUM(review_count) AS total_count
 FROM user
@@ -187,7 +187,7 @@ GROUP BY id
 ORDER BY total_count DESC
 LIMIT 3;
 		
-	Copy and Paste the Result Below:
+Copy and Paste the Result Below:
 
 +--------+-------------+
 | name   | total_count |
@@ -224,10 +224,9 @@ GROUP BY subtable.range;
 	
 9. Are there more reviews with the word "love" or with the word "hate" in them?
 
-	Answer: There is more reviews with the word "love"
+Answer: There is more reviews with the word "love"
 
-	
-	SQL code used to arrive at answer:
+SQL code used to arrive at answer:
 
 SELECT reaction, count(*) AS count
 FROM (SELECT CASE WHEN LOWER(text) LIKE '%love%' THEN 'love'
@@ -246,14 +245,14 @@ ORDER BY count DESC;
 	
 10. Find the top 10 users with the most fans:
 
-	SQL code used to arrive at answer:
+SQL code used to arrive at answer:
 
 SELECT name, fans
 FROM user
 ORDER BY fans DESC
 LIMIT 10;	
 	
-	Copy and Paste the Result Below:
+Copy and Paste the Result Below:
 
 +-----------+------+
 | name      | fans |
