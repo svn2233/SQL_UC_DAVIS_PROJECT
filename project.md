@@ -398,23 +398,17 @@ Result:
 ```
 	
 ### 3. For this last part of your analysis, you are going to choose the type of analysis you want to conduct on the Yelp dataset and are going to prepare the data for analysis.
-```
-Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find
-commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have,
-and so on.These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve.
-Provide answers, in-line, to all of the following:
-```
 
-```	
-i. Indicate the type of analysis you chose to do:
-The analysis I chose is finding the most successful category of business.
+Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on.These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
+
+#### i. Indicate the type of analysis you chose to do:
+* The analysis I chose is finding the most successful category of business.
       
-ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
-To do my analysis I take each category and compare it with their average star rating compared to their average opening rate.
-To make my analysis more accurate I chose a set of category that have more than 10 businesses.
-As you can see from the data below the most successful category is "Local Services" with an average star rating of 4.21 and average open of .83.
-You can see the trend that usually the higher the star rating the higher the opening rate and the lower the star rating the category tends to close more often hence the lower average opening.
+#### ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
+* To conduct my analysis, I compared each category based on their average star rating and average opening rate. To ensure greater accuracy, I focused on categories with more than 10 businesses.
+* From the data presented below, it is evident that the most successful category is "Local Services," boasting an average star rating of 4.21 and an average opening rate of 0.83. A noticeable trend emerges, indicating that higher star ratings are associated with higher opening rates, while lower-rated categories tend to experience closures more frequently, resulting in lower average openings.
 
+```
 iii. Output of your finished dataset:
 
 +------------------------+--------------+-----------+------------+
