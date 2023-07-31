@@ -1,7 +1,7 @@
 # UC Davis SQL project "Profiling and Analyzing Yelp Dataset."  
 ###### *This is a SQL project that I did for the course "SQL for Data Science" offered by UC Davis via Coursera.*
 
-#### *In this project I am tasked as a data scientist to answer the given questions and provide the SQL code to arrive to the answer in part 1 of this project. In part 2 of the project I'm asked to come up with my own inferences and analysis of the data for a particular research question I want to answer.*
+In this project I am tasked as a data scientist to answer the given questions and provide the SQL code to arrive to the answer in part 1 of this project. In part 2 of the project I'm asked to come up with my own inferences and analysis of the data for a particular research question I want to answer.
 
 ## Profiling and Analyzing the Yelp Dataset Coursera
 
@@ -38,11 +38,9 @@ xi. Elite_years = 2780 (user_id)
 ##### *Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.*	
 
 #### 3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
-
-##### Answer: NO, there is no columns with null values in user table 
-```
+* NO, there is no columns with null values in the user table.
 SQL code used to arrive at answer:
-
+```
 SELECT *
 FROM user
 WHERE id IS NULL OR
@@ -93,9 +91,8 @@ WHERE id IS NULL OR
 ```
 		
 #### 5. List the cities with the most reviews in descending order:
-```
 SQL code used to arrive at answer:
-
+```
 SELECT sum(review_count) AS total_reviews, city
 FROM business
 GROUP BY city
@@ -139,9 +136,8 @@ ORDER BY total_reviews DESC;
 #### 6. Find the distribution of star ratings to the business in the following cities:
 
 ##### i. Avon
-```
 SQL code used to arrive at answer:
-
+```
 SELECT stars AS star_rating, COUNT(stars) AS count
 FROM business
 WHERE city='Avon'
@@ -163,8 +159,8 @@ GROUP BY stars;
 ```
 
 ##### ii. Beachwood
-```
 SQL code used to arrive at answer:
+```
 SELECT stars AS star_rating, COUNT(stars) AS count
 FROM business
 WHERE city='Beachwood'
@@ -186,10 +182,8 @@ GROUP BY stars;
 ```
 
 #### 7. Find the top 3 users based on their total number of reviews:
-		
+SQL code used to arrive at answer:		
 ```
-SQL code used to arrive at answer:
-
 SELECT name, SUM(review_count) AS total_count
 FROM user
 GROUP BY id
@@ -208,9 +202,10 @@ LIMIT 3;
 ```
 
 #### 8. Does posing more reviews correlate with more fans?
+Please explain your findings and interpretation of the results:
+* Having more reviews does correlate with having more fans. As users receive more reviews, they tend to attract more fans.
 
-##### Please explain your findings and interpretation of the results:
-##### *Posing more reviews does correlate with more fans. As the more reviews users get they tend to have more fans.*
+SQL code used to arrive at answer:
 ```
 SELECT range AS fans_range, 
        COUNT(*) AS num_user, 
@@ -235,11 +230,10 @@ GROUP BY subtable.range;
 ```
 	
 #### 9. Are there more reviews with the word "love" or with the word "hate" in them?
+* There is more reviews containing the word "love"
 
-##### *Answer: There is more reviews with the word "love"*
-```
 SQL code used to arrive at answer:
-
+```
 SELECT reaction, count(*) AS count
 FROM (SELECT CASE WHEN LOWER(text) LIKE '%love%' THEN 'love'
                   WHEN LOWER(text) LIKE '%hate%' THEN 'hate' 
@@ -258,9 +252,8 @@ ORDER BY count DESC;
 ```
 	
 #### 10. Find the top 10 users with the most fans:
+SQL code used:
 ```
-SQL code used to arrive at answer:
-
 SELECT name, fans
 FROM user
 ORDER BY fans DESC
@@ -287,12 +280,13 @@ LIMIT 10;
 ## Part 2: Inferences and Analysis
 
 #### 1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating. Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
-```
-The city I chose is Las Vegas and the category I chose is Shopping
+
+* The city I have chosen is Las Vegas, and the category I have selected is Shopping.
 	
 i. Do the two groups you chose to analyze have a different distribution of hours?
 
-SQL Code:
+SQL code used for analysis:
+```
 SELECT CASE WHEN stars >= 4.0 THEN '4-5 stars'
             WHEN stars >= 2.0 THEN '2-3 stars'
             ELSE 'below 2' END AS 'STARS',               
@@ -314,12 +308,12 @@ Result:
 | 4-5 stars |        2 |              12 |           6.0 |
 +-----------+----------+-----------------+---------------+
 ```
-According to the data there seems to be no big difference in opening days between the 2 groups
+* Based on the data, there appears to be no significant difference in the opening days between the two groups
 
-```
 ii. Do the two groups you chose to analyze have a different number of reviews?
 
-SQL code:
+SQL code used for analysis:
+```
 SELECT CASE WHEN stars >= 4.0 THEN '4-5 stars'
             WHEN stars >= 2.0 THEN '2-3 stars'
             ELSE 'below 2' END AS 'STARS',               
@@ -340,12 +334,12 @@ Results:
 | 4-5 stars |        2 |                 36 |             18.0 |
 +-----------+----------+--------------------+------------------+      
 ```
-According to the data the two groups have different number of reviews with 2-3 stars having 17 reviews and 4-5 stars having 36 reviews. This shows that 4-5 stars businesses has basically double the reviews of 2-3 star businesses.  
-```
+* According to the data, the two groups have a different number of reviews, with businesses rated 2-3 stars having 17 reviews, and those rated 4-5 stars having 36 reviews. This indicates that businesses with 4-5 stars have approximately twice as many reviews as businesses with 2-3 stars.
+  
 iii. Are you able to infer anything from the location data provided between these two groups? Explain.
 
 SQL code used for analysis:
-
+```
 SELECT CASE WHEN stars >= 4.0 THEN '4-5 stars'
             WHEN stars >= 2.0 THEN '2-3 stars'
             ELSE 'below 2' END AS 'STARS',
@@ -366,18 +360,17 @@ Result:
 | 2-3 stars | Eastside     | 3808 E Tropicana Ave   | 89121       |
 | 4-5 stars |              | 3555 W Reno Ave, Ste F | 89118       |
 +-----------+--------------+------------------------+-------------+
-According to the data, businesses that score 4-5 stars are located away from E Tropicana Ave and businesses that score 2-3 stars are in the Eastside neighborhood on E tropicana Ave.
+* Based on the data, businesses that score 4-5 stars are situated away from E Tropicana Ave, while businesses that score 2-3 stars are located in the Eastside neighborhood on E Tropicana Ave.
 ```
 
 ### 2. Group business based on the ones that are open and the ones that are closed. What differences can you find between the ones that are still open and the ones that are closed? List at least two differences and the SQL code you used to arrive at your answer.
 		
-```
-i. Difference 1: Their is a difference number of business open vs closed. According to the data the number of open business is bigger than closed ones
+i. Difference 1: There is a difference in the number of businesses open versus closed. According to the data, the number of open businesses is greater than that of the closed ones
      
-ii. Difference 2: Their is a difference of number of review and average stars when it comes to open and closed business. It shows that the open businesses have more reviews and better average stars.
+ii. Difference 2: There is a difference in the number of reviews and average stars between open and closed businesses. The data shows that open businesses have more reviews and better average stars.
 
 SQL code used for analysis:
-
+```
 SELECT is_open, 
        COUNT(distinct business.id) AS num_business, 
        COUNT(distinct review.id) AS num_review,
@@ -402,15 +395,14 @@ Result:
 Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on.These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
 
 #### i. Indicate the type of analysis you chose to do:
-* The analysis I chose is finding the most successful category of business.
+* The analysis I have chosen focuses on identifying the most successful category of business.
       
 #### ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
 * To conduct my analysis, I compared each category based on their average star rating and average opening rate. To ensure greater accuracy, I focused on categories with more than 10 businesses.
 * From the data presented below, it is evident that the most successful category is "Local Services," boasting an average star rating of 4.21 and an average opening rate of 0.83. A noticeable trend emerges, indicating that higher star ratings are associated with higher opening rates, while lower-rated categories tend to experience closures more frequently, resulting in lower average openings.
 
-```
 iii. Output of your finished dataset:
-
+```
 +------------------------+--------------+-----------+------------+
 | category               | num_business | avg_stars | avg_is_open |
 +------------------------+--------------+-----------+------------+
